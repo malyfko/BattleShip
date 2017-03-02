@@ -30,7 +30,7 @@ class Ship {
       return compartment.toString();
     });
     ship.map(function (compartment) {
-      surroundPoints.map(function (surPoint) {
+      surroundPoints.map((surPoint)=>{
         let p = compartment.add(surPoint);
         if (surroundingsString.indexOf(p.toString()) === -1 && shipString.indexOf(p.toString()) === -1 && p.isOnField()) {
           surroundingsString.push((p).toString());
@@ -39,6 +39,21 @@ class Ship {
       })
     });
      return surroundings;
+  }
+
+  isOnField() {
+    let acceptable = true;
+    this.getCompartments().map((compartment)=> {
+      if (!compartment.isOnField())
+        acceptable = false;
+        return acceptable;
+    });
+    this.getSurroundings().map((surPoint)=>{
+      if (!surPoint.isOnField())
+        acceptable = false;
+      return acceptable;
+    });
+    return acceptable
   }
 }
 
