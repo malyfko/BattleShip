@@ -10,6 +10,8 @@ class Ship {
     this.size = size;
     this.anchor = anchor; 
     this.direction = direction;
+    this.attemptes = 0;
+    this.destroyed = false;
   }
 
   getCompartments() {
@@ -54,6 +56,18 @@ class Ship {
       return acceptable;
     });
     return acceptable
+  }
+
+  shipWasAttempted() {
+    if (this.attemptes < this.size - 1)
+      this.attemptes++;
+    else
+      this.shipWasDestroyed();
+  }
+
+  shipWasDestroyed() {
+    this.attemptes++;
+    this.destroyed = true;
   }
 }
 
