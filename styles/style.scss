@@ -17,10 +17,17 @@
       flex-wrap: wrap;
       flex-direction: row;
       box-sizing: border-box;
+      font-size: .95em;
       .cell {
         text-align: center;
         vertical-align: middle;
         flex-basis: 10%;
+        border: {
+          style: solid;
+          color: lightgray;
+          width:  0  .1px .1px  0;
+        }
+        box-sizing: border-box;
         &.clickable {
           cursor: pointer;
         }
