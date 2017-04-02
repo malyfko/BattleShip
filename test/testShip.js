@@ -16,4 +16,12 @@ describe('Ship', function() {
       assert.notInclude(surroundingsString, new Point(3, -1).toString(), 'doesn`t contain point (3, -1)');
     });
   });
+  describe('#isOnField()', function () {
+    it('should check if ship is on the field', function () {
+      var ship1 = new Ship(4, new Point(0, 0), new Point(-1, 0));
+      assert.isFalse(ship1.isOnField());
+      var ship2 = new Ship(3, new Point(2, 3), new Point(0, 1));
+      assert.isTrue(ship2.isOnField());
+    });
+  });
 });
