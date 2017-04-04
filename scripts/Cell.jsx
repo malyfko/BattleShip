@@ -1,10 +1,8 @@
 import React from 'react';
 import Ship from './Ship';
 
-class Cell extends React.Component {
-  constructor (props) {
-    super(props);
-  }
+class Cell extends React.PureComponent {
+
   render () {
     if (this.props.attempted) {
       if (this.props.correspondingShip)

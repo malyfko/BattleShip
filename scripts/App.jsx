@@ -2,42 +2,25 @@ import '../styles/style.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import GameField from './GameField';
+import gameState from './GameState';
+import './ComputerPlayer';
+
 
 class App extends React.Component{
   constructor() {
     super();
-    this.state = {
-      startGame: false,
-      shootingTurn : null
-    };
-    this.startGame = this.startGame.bind(this);
     this.chooseFirstShooter = this.chooseFirstShooter.bind(this);
-    this.switchPlayer = this.switchPlayer.bind(this);
+    this.onStateChanged = this.onStateChanged.bind(this);
+    gameState.callbacks.push(this.onStateChanged);
+    this.state = gameState.state;
   }
 
-  startGame() {
-
+  onStateChanged(state) {
+    this.setState(state);
   }
 
   chooseFirstShooter() {
-    let players = [`user`, `computer`];
-    this.setState({
-      shootingTurn: players[Math.round(Math.random())],
-      startGame: true
-    })
-  }
-
-  switchPlayer() {
-    console.log(`switch player called`);
-    console.log(`this.state.shootingTurn in App`, this.state.shootingTurn);
-    if (this.state.shootingTurn === `user`)
-      this.setState({
-        shootingTurn: `computer`
-      });
-    else
-      this.setState({
-        shootingTurn: `user`
-      });
+    gameState.startGame();
   }
 
   render() {
@@ -45,11 +28,9 @@ class App extends React.Component{
       <div id="game">
         <div className="wrapper">
           <GameField fieldType={`user`}
-                     shootingTurn={this.state.shootingTurn}
-                     switchPlayer={this.switchPlayer}/>
+                     cells={this.state.cells.user}/>
           <GameField fieldType={`computer`}
-                     shootingTurn={this.state.shootingTurn}
-                     switchPlayer={this.switchPlayer}/>
+                     cells={this.state.cells.computer}/>
         </div>
         {this.state.startGame ? null :
           <button onClick={this.chooseFirstShooter}>Start game</button>}
