@@ -15,8 +15,7 @@ class ShipsSet {
       }
     }
     // First we start from generating and placing the biggest ship - 4-decker
-    let battleship = this.generateRandomShip(4);
-    this.assignPlacement(battleship);
+    let battleship = this.generateSeveralShips(1, 4);
     // Generate two 3-deckers
     let cruisers = this.generateSeveralShips(2, 3);
     // Generate three 2-deckers
@@ -26,7 +25,7 @@ class ShipsSet {
     this.ships = this.ships.concat(battleship, cruisers, destroyers, submarines);
   }
 
-  generateRandomShip(size) {
+  static generateRandomShip(size) {
     let directions = [new Point(0, 1), new Point(1, 0)];
     let ship;
     do {
@@ -40,7 +39,7 @@ class ShipsSet {
     let ships = new Array(number);
     for (let i = 0; i < number; i++) {
       do {
-        ships[i] = this.generateRandomShip(size);
+        ships[i] = this.constructor.generateRandomShip(size);
       } while (!this.spaceIsAvailable(ships[i]))
       this.assignPlacement(ships[i])
     }
