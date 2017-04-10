@@ -23,6 +23,7 @@
     "postcss-loader": "^0.13.0",
     "precss": "^1.4.0",
     "react": "^15.3.1",
+    "react-addons-css-transition-group": "^15.4.2",
     "react-color": "^2.8.0",
     "react-dom": "^15.3.1",
     "react-router": "^2.8.1",

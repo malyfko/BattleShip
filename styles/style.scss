@@ -1,35 +1,62 @@
 #app {
   width: 400px;
   height: 800px;
-  .wrapper {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
-    .field {
-      padding: 0;
-      width: calc(50% - 12px);
-      height: calc(25% - 12px);
-      border: 1px solid #000;
-      margin: 5px;
+  #game {
+    .notification {
+      color: limegreen;
+      border: 1px solid limegreen;
+      background-color: rgba(50, 205, 50, .05);
+      width: 50%;
       position: relative;
+      margin: 5px 25%;
+      text-align: center;
+      &.notification-enter, .notification-appear {
+        color: limegreen;
+      }
+      &.notification-enter-active, .notification-appear-active {
+        color: red;
+        transition: color .5s ease;
+      }
+    }
+    #start-game {
+      background-color: limegreen;
+      color: white;
+      width: 30%;
+      position: relative;
+      margin: 5px 35%;
+      border: none;
+      border-radius: 5px;
+    }
+    .wrapper {
+      width: 100%;
+      height: 100%;
       display: flex;
-      flex-wrap: wrap;
-      flex-direction: row;
-      box-sizing: border-box;
-      font-size: .95em;
-      .cell {
-        text-align: center;
-        vertical-align: middle;
-        flex-basis: 10%;
-        border: {
-          style: solid;
-          color: lightgray;
-          width:  0  .1px .1px  0;
-        }
+      justify-content: space-around;
+      .field {
+        padding: 0;
+        width: calc(50% - 12px);
+        height: calc(25% - 12px);
+        border: 1px solid #000;
+        margin: 5px;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
         box-sizing: border-box;
-        &.clickable {
-          cursor: pointer;
+        font-size: .95em;
+        .cell {
+          text-align: center;
+          vertical-align: middle;
+          flex-basis: 10%;
+          border: {
+            style: solid;
+            color: lightgray;
+            width: 0 .1px .1px 0;
+          }
+          box-sizing: border-box;
+          &.clickable {
+            cursor: pointer;
+          }
         }
       }
     }
