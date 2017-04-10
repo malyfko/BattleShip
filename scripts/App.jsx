@@ -26,19 +26,23 @@ class App extends React.Component{
   render() {
     return (
       <div id="game">
-        {this.state.startGame ?
-          <ReactCSSTransitionGroup
-            transitionName="notification"
-            transitionAppear={true}
-            transitionAppearTimeout={500}
-            transitionEnterTimeout={500}
-            transitionLeave={false}>
-            <div
-              className="notification"
-              key={this.state.shootingTurn}>{`${this.state.shootingTurn} is shooting`}</div>
-          </ReactCSSTransitionGroup>
-          : <button onClick={this.chooseFirstShooter}>Start game</button>
+        {(()=>{
+          switch (this.state.gameStatus) {
+            case null : return <button id="start-game" onClick={this.chooseFirstShooter}>Start game</button>;
+            case `on` : return (<ReactCSSTransitionGroup
+                                  transitionName="notification"
+                                  transitionAppear={true}
+                                  transitionAppearTimeout={500}
+                                  transitionEnterTimeout={500}
+                                  transitionLeave={false}>
+                                  <div
+                                    className="notification"
+                                    key={this.state.shootingTurn}>{`${this.state.shootingTurn} is shooting`}</div>
+                                </ReactCSSTransitionGroup>);
+            case `user won`:
+            case `computer won`: return <div className="notification">{this.state.gameStatus}</div>
           }
+        })()}
         <div className="wrapper">
           <GameField fieldType={`user`}
                      cells={this.state.cells.user}/>

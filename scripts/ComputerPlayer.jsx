@@ -6,7 +6,7 @@ class ComputerPlayer {
   }
 
   onStateChanged(state) {
-    if (state.shootingTurn === `computer`) {
+    if (state.gameStatus === `on` && state.shootingTurn === `computer`) {
       setTimeout(gameState.makeRandomShoot, 1000);
     }
   }

@@ -3,7 +3,7 @@ import ShipsSet from './ShipsSet';
 class GameState {
   constructor() {
     this.state = {
-      startGame : false,
+      gameStatus : null,
       shootingTurn : null,
       cells: {
         user : [...(new Array(10)).keys()].map(() =>
@@ -20,18 +20,23 @@ class GameState {
               attempted: false
             }))
         )
+      },
+      shipsSets: {
+        user: null,
+        computer: null
       }
     };
     this.callbacks = [];
     this.switchPlayer = this.switchPlayer.bind(this);
     this.makeRandomShoot = this.makeRandomShoot.bind(this);
-    this.placeShips(this.state.cells.user);
-    this.placeShips(this.state.cells.computer);
+    this.isGameOver = this.isGameOver.bind(this);
+    this.placeShips(`user`);
+    this.placeShips(`computer`);
   }
 
   startGame() {
     let players = [`user`, `computer`];
-    this.state.startGame = true;
+    this.state.gameStatus = `on`;
     this.state.shootingTurn = players[Math.round(Math.random())];
     this.onStateChanged();
   }
@@ -59,13 +64,26 @@ class GameState {
       this.switchPlayer();
     else
       this.onStateChanged();
+    this.isGameOver(fieldType);
   }
 
-  placeShips(cells) {
+  isGameOver(fieldType) {
+    let ships = this.state.shipsSets[fieldType].ships;
+    for (let ship in ships) {
+      if (ships.hasOwnProperty(ship) && !ships[ship].destroyed)
+        return false;
+    }
+    this.state.gameStatus = `${fieldType === 'user' ? 'computer' : 'user'} won`;
+    this.onStateChanged();
+    return true;
+  }
+
+  placeShips(player) {
     let ships = new ShipsSet();
+    this.state.shipsSets[player] = ships;
     ships.ships.map((ship) => {
       ship.getCompartments().map((compartment) => {
-        cells[compartment.x][compartment.y].correspondingShip = ship;
+        this.state.cells[player][compartment.x][compartment.y].correspondingShip = ship;
       })
     })
   }
