@@ -1,18 +1,16 @@
 import React from 'react';
-import equal from 'deep-equal';
 import Cell from './Cell';
-import ShipsSet from './ShipsSet';
 import gameState from './GameState';
 
 class GameField extends React.Component {
 
   render() {
     let cells = this.props.cells.map((row, x) =>
-      row.map((cell, y) =>
-        (<Cell {...cell} key={`${x}.${y}`}
+      row.map((cell, y) => {
+        return (<Cell {...cell} key={`${x}.${y}`}
                fieldType={this.props.fieldType}
                correspondingShip={cell.correspondingShip}
-               cellAttempt={gameState.cellAttempt.bind(gameState, x, y, this.props.fieldType)}/>))
+               cellAttempt={gameState.cellAttempt.bind(gameState, x, y, this.props.fieldType)}/>)})
     );
     return (
       <div className={`field`}>
