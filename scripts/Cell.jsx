@@ -19,7 +19,8 @@ class Cell extends React.PureComponent {
         <div className="cell">&nbsp;</div>
       );
       else return (
-        <div className="cell clickable" onClick={this.props.cellAttempt}>&nbsp;</div>
+        <div className={`cell ${this.props.activeField ? 'clickable' : ''}`}
+             onClick={this.props.activeField ? this.props.cellAttempt : null}>&nbsp;</div>
       );
   }
 }
@@ -28,7 +29,8 @@ Cell.propTypes = {
   correspondingShip: React.PropTypes.instanceOf(Ship),
   attempted: React.PropTypes.bool.isRequired,
   cellAttempt: React.PropTypes.func.isRequired,
-  fieldType : React.PropTypes.oneOf(['user','computer']).isRequired
+  fieldType : React.PropTypes.oneOf(['user','computer']).isRequired,
+  activeField: React.PropTypes.bool.isRequired
 };
 
 export default Cell;

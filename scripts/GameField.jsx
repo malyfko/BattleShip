@@ -8,9 +8,10 @@ class GameField extends React.Component {
     let cells = this.props.cells.map((row, x) =>
       row.map((cell, y) => {
         return (<Cell {...cell} key={`${x}.${y}`}
-               fieldType={this.props.fieldType}
-               correspondingShip={cell.correspondingShip}
-               cellAttempt={gameState.cellAttempt.bind(gameState, x, y, this.props.fieldType)}/>)})
+                fieldType={this.props.fieldType}
+                correspondingShip={cell.correspondingShip}
+                activeField={gameState.state.gameStatus === `on` && gameState.state.shootingTurn === `user` && this.props.fieldType === `computer`}
+                cellAttempt={gameState.cellAttempt.bind(gameState, x, y, this.props.fieldType)}/>)})
     );
     return (
       <div className={`field`}>
