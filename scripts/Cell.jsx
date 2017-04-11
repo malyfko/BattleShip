@@ -7,16 +7,16 @@ class Cell extends React.PureComponent {
     if (this.props.attempted) {
       if (this.props.correspondingShip)
         return (
-          <div className="cell">X</div>
+          <div className={`cell ${this.props.borders}`}>X</div>
         )
       else
         return (
-          <div className="cell">&middot;</div>
+          <div className={`cell ${this.props.borders}`}>&middot;</div>
         )
     }
-    else if (this.props.fieldType == 'user')
+    else if (this.props.fieldType === 'user')
       return (
-        <div className="cell">&nbsp;</div>
+        <div className={`cell ${this.props.borders}`}>&nbsp;</div>
       );
       else return (
         <div className={`cell ${this.props.activeField ? 'clickable' : ''}`}

@@ -51,11 +51,23 @@
           border: {
             style: solid;
             color: lightgray;
-            width: 0 .1px .1px 0;
+            width: 1px;
           }
           box-sizing: border-box;
           &.clickable {
             cursor: pointer;
+          }
+          &.top {
+            border-top-color: black;
+          }
+          &.right {
+            border-right-color: black;
+          }
+          &.bottom {
+            border-bottom-color: black;
+          }
+          &.left {
+            border-left-color: black;
           }
         }
       }
