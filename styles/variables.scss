@@ -1,0 +1,11 @@
+@keyframes attack-animation-hit {
+  0% {background-color: rgba(255, 165, 0, .6)}
+  50% {background-color: rgba(255, 25, 25, .7)}
+  100% {background-color: #fff;}
+}
+
+@keyframes attack-animation-missed {
+  0% {background-color: rgba(169, 224, 255, .1)}
+  50% {background-color: rgba(169, 224, 255, 1)}
+  100% {background-color: #fff;}
+}

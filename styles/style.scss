@@ -1,3 +1,4 @@
+@import "variables";
 #app {
   width: 400px;
   height: 800px;
@@ -54,7 +55,16 @@
             color: lightgray;
             width: 1px;
           }
+          background-color: #fff;
           box-sizing: border-box;
+          &.attempted {
+            &.missed {
+              animation: attack-animation-missed .5s linear 1;
+            }
+            &.hit {
+              animation: attack-animation-hit .5s linear 1;
+            }
+          }
           &.clickable {
             cursor: pointer;
           }

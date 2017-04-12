@@ -7,11 +7,11 @@ class Cell extends React.PureComponent {
     if (this.props.attempted) {
       if (this.props.correspondingShip)
         return (
-          <div className={`cell ${this.props.borders}`}>X</div>
+          <div className={`cell attempted hit ${this.props.borders}`}>X</div>
         )
       else
         return (
-          <div className={`cell ${this.props.borders}`}>&middot;</div>
+          <div className={`cell attempted missed ${this.props.borders}`}>&middot;</div>
         )
     }
     else if (this.props.fieldType === 'user')
