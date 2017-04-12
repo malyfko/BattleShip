@@ -21,7 +21,7 @@ class GameField extends React.Component {
         return (<Cell {...cell} key={`${x}.${y}`}
                 fieldType={this.props.fieldType}
                 correspondingShip={cell.correspondingShip}
-                borders={this.props.fieldType === `user` ? borders.trim() : null}
+                borders={this.props.fieldType === `user` && gameState.state.gameStatus ? borders.trim() : null}
                 activeField={gameState.state.gameStatus === `on` && gameState.state.shootingTurn === `user` && this.props.fieldType === `computer`}
                 cellAttempt={gameState.cellAttempt.bind(gameState, x, y, this.props.fieldType)}/>)})
     );
