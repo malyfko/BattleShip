@@ -8,5 +8,7 @@ npm run build
 npm run server
 ```
 ## Testing and linting
-`npm test`
-`npm run lint`
+```
+npm test
+npm run lint
+```
